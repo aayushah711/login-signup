@@ -14,4 +14,15 @@ const registrationValidation = (data) => {
     return {};
 };
 
-module.exports = { registrationValidation };
+const loginValidation = (data) => {
+    if (!validator.default.isEmail(data.email)) {
+        return { error: 'Enter a valid email address.' };
+    }
+    if (!validator.default.isLength(data.password, { min: 7, max: undefined })) {
+        return { error: 'Password should have atleast 7 characters.' };
+    }
+
+    return {};
+};
+
+module.exports = { registrationValidation, loginValidation };
